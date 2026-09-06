@@ -37,9 +37,16 @@ ul li a:hover {
   background-color: #111111;
 }
 
-/* GitHub tlačítko na pravé straně */
 ul li.nav-right {
   margin-left: auto;
+}
+
+.version-badge {
+  display: block;
+  color: #aaaaaa;
+  padding: 14px 12px;
+  font-size: 0.9em;
+  user-select: none;
 }
 
 .github-link {
@@ -52,7 +59,7 @@ ul li.nav-right {
 .github-icon {
   width: 22px;
   height: 22px;
-  filter: invert(1); /* Převede černou SVG ikonu na bílou */
+  filter: invert(1);
 }
 
 .card {
