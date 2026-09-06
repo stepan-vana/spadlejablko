@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spadlejablko</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <ul>
+    <li><a href="#home" onclick="showSection('home')">Home</a></li>
+    <li><a href="#iss" onclick="showSection('iss')">ISS</a></li>
+    <li><a href="https://www.heavens-above.com/StarLink.aspx?lat=0&lng=0&loc=Unspecified&alt=0&tz=UCT" target="_blank">3D Starlink Orbit</a></li>
+    <li class="nav-right">
+      <a href="https://github.com/stepan-vana/spadlejablko" target="_blank" class="github-link" title="GitHub Repository">
+        <img src="assets/icons/github.svg" alt="GitHub" class="github-icon" style="margin-right: 8px; vertical-align: middle;">
+        Github
+      </a>
+    </li>
+  </ul>
+
+  <div class="wrapper">
+    <div class="card page-section" id="home">
+      <h3>Hello there! 👋</h3>
+      <p>I was bored so i created this simple website. This website doesn't have a special purpose, but it's a fun project for my boredom.</p>
+    </div>
+
+    <div class="page-section" id="iss">
+      <div class="card">
+        <h3>ISS Location and Data</h3>
+        <div class="data-row">
+          <span>Latitude:</span>
+          <span class="data-value" id="lat">Loading...</span>
+        </div>
+        <div class="data-row">
+          <span>Longitude:</span>
+          <span class="data-value" id="lon">Loading...</span>
+        </div>
+        <div class="data-row">
+          <span>Maps Parameter:</span>
+          <span class="data-value" id="maps-param">Loading...</span>
+        </div>
+        <div class="data-row">
+          <span>Velocity (km/h):</span>
+          <span class="data-value" id="velocity">--</span>
+        </div>
+        <div class="data-row">
+          <span>Altitude (km):</span>
+          <span class="data-value" id="altitude">--</span>
+        </div>
+        <div class="data-row">
+          <span>Timestamp (Unix):</span>
+          <span class="data-value" id="timestamp">--</span>
+        </div>
+        <div class="data-row">
+          <span>Visibility:</span>
+          <span class="data-value" id="visibility">--</span>
+        </div>
+        <div class="status" id="iss-status">Updating...</div>
+        <div class="data-row">
+          <span>Original Visualisation Link:</span>
+          <a href="https://wheretheiss.at" target="_blank">Click here (wheretheiss.at)</a>
+        </div>
+        <hr>
+        <div class="data-row">
+          <span>Refresh Rate:</span>
+          <button id="refresh-rate" onclick="toggleRefreshRate()">1s</button>
+        </div>
+        <hr>
+        <b>[?]</b> The data is not 100% accurate because satellites in low Earth orbit are constantly slowed down by the thin atmosphere and actively change direction using their own thrusters.
+      </div>
+
+      <div id="iss-map"></div>
+    </div>
+    <hr>
+    <p>&copy; 2026 spadlejablko.com. All rights reserved.</p>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/script.js"></script>
+</body>
+</html>
