@@ -12,10 +12,11 @@
   <ul>
     <li><a href="#home" onclick="showSection('home')">Home</a></li>
     <li><a href="#iss" onclick="showSection('iss')">ISS</a></li>
+    <li><a href="#pwned" onclick="showSection('pwned')">Password Check</a></li>
     <li><a href="https://www.heavens-above.com/StarLink.aspx?lat=0&lng=0&loc=Unspecified&alt=0&tz=UCT" target="_blank">3D Starlink Orbit <span style="font-family: monospace">↗</span></a></li>
     
     <li class="nav-right">
-      <span class="version-badge">v1.0.0</span>
+      <span class="version-badge">v1.1.3</span>
     </li>
     <li>
       <a href="https://github.com/stepan-vana/spadlejablko" target="_blank" class="github-link" title="GitHub Repository">
@@ -64,7 +65,7 @@
         </div>
         <div class="status" id="iss-status">Updating...</div>
         <div class="data-row">
-          <span>Original Visualisation Link:</span>
+          <span>Orbit Visualisation Link:</span>
           <a href="https://wheretheiss.at" target="_blank">Click here (wheretheiss.at)</a>
         </div>
         <hr>
@@ -78,6 +79,22 @@
 
       <div id="iss-map"></div>
     </div>
+
+    <div class="page-section" id="pwned">
+      <div class="card">
+        <h3>Pwned Passwords Check</h3>
+        <p>Check if a password has been exposed in a data breach.</p>
+        
+        <div style="margin-top: 15px;">
+          <input type="password" id="pass-input" placeholder="Enter password" class="pwned-input">
+          <button onclick="checkPwnedPassword()" class="pwned-btn">Check Password</button>
+          <p>Don't worry, your password is not sent to any server :) Just checking locally.</p>
+        </div>
+
+        <div id="pwned-result" class="pwned-status"></div>
+      </div>
+    </div>
+
     <hr>
     <p>[ &copy; 2026 spadlejablko.com. All rights reserved. ]</p>
 

@@ -74,6 +74,48 @@ async function fetchISSData() {
   }
 }
 
+async function checkPwnedPassword() {
+  const input = document.getElementById('pass-input').value;
+  const resultDiv = document.getElementById('pwned-result');
+
+  if (!input) {
+    alert('Please enter a password first.');
+    return;
+  }
+
+  resultDiv.style.display = 'block';
+  resultDiv.className = 'pwned-status';
+  resultDiv.innerText = 'Checking database...';
+
+  try {
+    const buffer = new TextEncoder().encode(input);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', buffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const fullHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+
+    const prefix = fullHash.substring(0, 5);
+    const suffix = fullHash.substring(5);
+
+    const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`);
+    const data = await response.text();
+
+    const match = data.split('\r\n').find(line => line.startsWith(suffix));
+
+    if (match) {
+      const count = match.split(':')[1];
+      resultDiv.className = 'pwned-status unsafe';
+      resultDiv.innerText = `[!] Warning! This password has been seen ${parseInt(count).toLocaleString()} times in data breaches.`;
+    } else {
+      resultDiv.className = 'pwned-status safe';
+      resultDiv.innerText = '[?] Good news! This password was not found in any known data breaches.';
+    }
+  } catch (err) {
+    console.error(err);
+    resultDiv.className = 'pwned-status unsafe';
+    resultDiv.innerText = 'Error connecting to API.';
+  }
+}
+
 initMap();
 initNavigation();
 
